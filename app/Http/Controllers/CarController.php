@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
-use App\Models\Service;
-class ServiceController extends Controller
+
+class CarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
-        return view('service.index', ['obj' => $service]);
+        $car = Car::all();
+        return view('car.index', ['obj' => $car]);
     }
 
     /**
@@ -24,8 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view("service.create");
-
+        return view('car.create');
     }
 
     /**
@@ -36,15 +36,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
+        $car = new Car();
+        $car->module = $request->input('module');
+        $car->produce_date = $request->input('produce_date');
+        $car->number = $request->input('number');
+        $car->colour = $request->input('colour');
+        $car->class = $request->input('class');
 
-        $service->save();
-
-        return redirect()->route('service.index');
+        $car->save();
+        return redirect()->route('car.index');
     }
 
     /**
@@ -53,9 +53,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -66,8 +66,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        return view('service.update', ['obj' => $service]);
+        $car = Car::find($id);
+        return view('car.update', ['obj' => $car]);
     }
 
     /**
@@ -79,15 +79,15 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = Service::find($id);
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
+        $car = Car::find($id);
+        $car->module = $request->input('module');
+        $car->produce_date = $request->input('produce_date');
+        $car->number = $request->input('number');
+        $car->colour = $request->input('colour');
+        $car->class = $request->input('class');
 
-        $service->save();
-
-        return redirect()->route('service.index');
+        $car->save();
+        return redirect()->route('car.index');
     }
 
     /**
@@ -98,7 +98,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       Service::find($id)->delete();
-       return redirect()->route('service.index');
+        Car::find($id)->delete();
+        return redirect()->route('car.index');
     }
 }

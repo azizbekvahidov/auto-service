@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
-use App\Models\Service;
-class ServiceController extends Controller
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
+
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
-        return view('service.index', ['obj' => $service]);
+        $client = Client::all();
+        return view('client.index', ['obj' => $client]);
     }
 
     /**
@@ -24,8 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view("service.create");
-
+        return view('client.create');
     }
 
     /**
@@ -36,15 +37,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
+        $client = new Client;
+        $client->name = $request->input('name');
+        $client->surename = $request->input('surename');
+        $client->lastname = $request->input('lastname');
+        $client->birth = $request->input('birth');
+        // $service->passport = $request->input('passport');
 
-        $service->save();
-
-        return redirect()->route('service.index');
+        $client->save();
+        return redirect()->route('client.index');
     }
 
     /**
@@ -53,9 +54,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -66,8 +67,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        return view('service.update', ['obj' => $service]);
+        $client = Client::find($id);
+        return view('client.update', ['obj' => $client]);
     }
 
     /**
@@ -79,15 +80,15 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = Service::find($id);
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
+        $client = Client::find($id);
+        $client->name = $request->input('name');
+        $client->surename = $request->input('surename');
+        $client->lastname = $request->input('lastname');
+        $client->birth = $request->input('birth');
+        // $service->passport = $request->input('passport');
 
-        $service->save();
-
-        return redirect()->route('service.index');
+        $client->save();
+        return redirect()->route('client.index');
     }
 
     /**
@@ -98,7 +99,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       Service::find($id)->delete();
-       return redirect()->route('service.index');
+        Client::find($id)->delete();
+        return redirect()->route('client.index');
     }
 }

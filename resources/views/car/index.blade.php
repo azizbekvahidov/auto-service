@@ -17,7 +17,7 @@
                                 <h3 class="mb-0">Page visits</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{route('service.create')}}" class="btn btn-sm btn-primary">Create</a>
+                                <a href="{{route('car.create')}}" class="btn btn-sm btn-primary">Create</a>
                             </div>
                         </div>
                     </div>
@@ -26,32 +26,35 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">name</th>
-                                    <th scope="col">price</th>
-                                    <th scope="col">client_id</th>
-                                    <th scope="col">deatline</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">module</th>
+                                    <th scope="col">produce_date</th>
+                                    <th scope="col">number</th>
+                                    <th scope="col">colour</th>
+                                    <th scope="col">class</th>
                                 </tr>
                             </thead>
                             @foreach($obj as $i)
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                        {{$i->name}}
+                                        {{$i->module}}
                                     </th>
                                     <td>
-                                        {{$i->price}}
+                                        {{$i->produce_date}}
                                     </td>
                                     <td>
-                                        {{$i->client_id}}
+                                        {{$i->number}}
                                     </td>
                                     <td>
-                                        {{$i->deatline}}
+                                        {{$i->colour}}
                                     </td>
                                     <td>
-                                        <a href="{{route('service.edit', $i->id)}}" ><i class="fas fa-pen"></i></a>
+                                        {{$i->class}}
+                                    </td>
+                                    <td>
+                                        <a href="{{route('car.edit', $i->id)}}" ><i class="fas fa-pen"></i></a>
 
-                                        <a href="{{route('service.delete', $i->id)}}"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('car.delete', $i->id)}}"><i class="fas fa-trash"></i></a>
 
                                     </td>
                                 </tr>

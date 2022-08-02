@@ -17,7 +17,7 @@
                                 <h3 class="mb-0">Page visits</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{route('service.create')}}" class="btn btn-sm btn-primary">Create</a>
+                                <a href="{{route('client.create')}}" class="btn btn-sm btn-primary">Create</a>
                             </div>
                         </div>
                     </div>
@@ -27,37 +27,43 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">name</th>
-                                    <th scope="col">price</th>
-                                    <th scope="col">client_id</th>
-                                    <th scope="col">deatline</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">surename</th>
+                                    <th scope="col">lastname</th>
+                                    <th scope="col">birth</th>
+                                    {{-- <th scope="col">passport</th> --}}
                                 </tr>
                             </thead>
-                            @foreach($obj as $i)
+
+                        @foreach ($obj as $i)
+
+
                             <tbody>
                                 <tr>
                                     <th scope="row">
                                         {{$i->name}}
                                     </th>
                                     <td>
-                                        {{$i->price}}
+                                        {{$i->surename}}
                                     </td>
                                     <td>
-                                        {{$i->client_id}}
+                                        {{$i->lastname}}
                                     </td>
                                     <td>
-                                        {{$i->deatline}}
+                                        {{$i->birth}}
                                     </td>
                                     <td>
-                                        <a href="{{route('service.edit', $i->id)}}" ><i class="fas fa-pen"></i></a>
+                                        {{$i->passport}}
+                                    </td>
+                                    <td>
+                                        <a href="{{route('client.edit',$i->id)}}" ><i class="fas fa-pen"></i></a>
 
-                                        <a href="{{route('service.delete', $i->id)}}"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('client.delete',$i->id)}}"><i class="fas fa-trash"></i></a>
 
                                     </td>
                                 </tr>
 
                             </tbody>
-                            @endforeach
+                        @endforeach
                         </table>
                     </div>
                 </div>
