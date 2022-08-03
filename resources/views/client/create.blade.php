@@ -10,7 +10,7 @@
 
     <div class="card" style="width: 50%;">
         <div class="card-body">
-            <form action="{{route('client.store')}}" method="POST">
+            <form action="{{route('client.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
                 <div class="col-md-6">
@@ -35,11 +35,11 @@
                         <input type="datetime-local" name="birth" placeholder="birth" class="form-control" />
                     </div>
                 </div>
-                {{-- <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <input type="file" name="passport" class="form-control" />
                     </div>
-                </div> --}}
+                </div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">create</button>
                 </div>

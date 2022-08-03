@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Service;
 class ServiceController extends Controller
@@ -24,7 +25,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view("service.create");
+        $clients = Client::all();
+        return view("service.create",["clients" => $clients]);
 
     }
 
@@ -67,7 +69,8 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('service.update', ['obj' => $service]);
+        $clients = Client::all();
+        return view('service.update', ['obj' => $service,"clients" => $clients]);
     }
 
     /**

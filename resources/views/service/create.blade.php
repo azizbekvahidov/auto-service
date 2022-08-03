@@ -27,7 +27,11 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="number" name="client_id" placeholder="client_id" class="form-control" />
+                        <select name="client_id" id="" class="form-control">
+                            @foreach ($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">

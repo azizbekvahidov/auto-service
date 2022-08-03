@@ -37,13 +37,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
         $client = new Client;
-        $client->name = $request->input('name');
+        $client->name = $request->name;
         $client->surename = $request->input('surename');
         $client->lastname = $request->input('lastname');
         $client->birth = $request->input('birth');
-        $client->passport = $request->input('passport');
-
+        if($request->hasFile("passport")){
+            $path = $request->passport->store('images','public');
+            $client->passport = $path;
+        }
         $client->save();
         return redirect()->route('client.index');
     }
