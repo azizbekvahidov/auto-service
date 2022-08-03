@@ -30,7 +30,7 @@
                                     <th scope="col">surename</th>
                                     <th scope="col">lastname</th>
                                     <th scope="col">birth</th>
-                                    {{-- <th scope="col">passport</th> --}}
+                                    <th scope="col">passport</th>
                                 </tr>
                             </thead>
 

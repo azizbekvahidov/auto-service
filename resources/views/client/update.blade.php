@@ -35,11 +35,11 @@
                         <input type="datetime-local" name="birth" value={{$obj->birth}} placeholder="birth" class="form-control" />
                     </div>
                 </div>
-                {{-- <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <input type="file" name="passport" class="form-control" />
                     </div>
-                </div> --}}
+                </div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">Edit</button>
                 </div>

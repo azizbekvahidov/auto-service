@@ -42,7 +42,7 @@ class ClientController extends Controller
         $client->surename = $request->input('surename');
         $client->lastname = $request->input('lastname');
         $client->birth = $request->input('birth');
-        // $service->passport = $request->input('passport');
+        $client->passport = $request->input('passport');
 
         $client->save();
         return redirect()->route('client.index');
@@ -85,7 +85,7 @@ class ClientController extends Controller
         $client->surename = $request->input('surename');
         $client->lastname = $request->input('lastname');
         $client->birth = $request->input('birth');
-        // $service->passport = $request->input('passport');
+        $client->passport = $request->input('passport');
 
         $client->save();
         return redirect()->route('client.index');

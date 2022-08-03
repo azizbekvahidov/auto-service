@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->string("lastname");
             $table->timestamp("birth");
             $table->timestamps();
-            // $table->string("passport");
+            $table->string("passport")->noolable();
         });
     }
 
