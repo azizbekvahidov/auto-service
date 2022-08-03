@@ -30,7 +30,7 @@
                                     <th scope="col">surename</th>
                                     <th scope="col">lastname</th>
                                     <th scope="col">birth</th>
-                                    <th scope="col">passport</th>
+                                    {{-- <th scope="col">passport</th> --}}
                                 </tr>
                             </thead>
 
@@ -51,9 +51,9 @@
                                     <td>
                                         {{$i->birth}}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{$i->passport}}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a href="{{route('client.edit',$i->id)}}" ><i class="fas fa-pen"></i></a>
 
