@@ -40,6 +40,7 @@
                         <input type="text" name="class" placeholder="class" class="form-control" />
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">create</button>
                 </div>

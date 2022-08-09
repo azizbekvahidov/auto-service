@@ -12,6 +12,9 @@
         <div class="card-body">
             <form action="{{route('client.store')}}" method="POST">
             @csrf
+            @error('car_id')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             @method('PUT')
                 <div class="col-md-6">
                     <div class="form-group">
@@ -35,11 +38,16 @@
                         <input type="datetime-local" name="birth" placeholder="birth" class="form-control" />
                     </div>
                 </div>
-                {{-- <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <input type="file" name="passport" class="form-control" />
+                            <select name="car_id[]" multiple>
+                        @foreach ($obj as $i)
+                                <option value="{{$i->id}}">{{$i->module}}</option>
+                        @endforeach
+                            </select>
                     </div>
-                </div> --}}
+                </div>
+
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">create</button>
                 </div>

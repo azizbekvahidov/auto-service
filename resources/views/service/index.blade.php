@@ -14,7 +14,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Page visits</h3>
+                                <h3 class="mb-0">Service</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="{{route('service.create')}}" class="btn btn-sm btn-primary">Create</a>
@@ -29,10 +29,12 @@
                                     <th scope="col">name</th>
                                     <th scope="col">price</th>
                                     <th scope="col">client_id</th>
+                                    <th scope="col">car_id</th>
                                     <th scope="col">deatline</th>
-                                    <th scope="col"></th>
+
                                 </tr>
                             </thead>
+
                             @foreach($obj as $i)
                             <tbody>
                                 <tr>
@@ -43,7 +45,10 @@
                                         {{$i->price}}
                                     </td>
                                     <td>
-                                        {{$i->client_id}}
+                                        {{$i->client->name}}
+                                    </td>
+                                    <td>
+                                        {{-- {{$i->car->module}} --}}
                                     </td>
                                     <td>
                                         {{$i->deatline}}

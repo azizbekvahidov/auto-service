@@ -15,29 +15,29 @@
             @method('PUT')
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="module" value={{$obj->module}} class="form-control" id="exampleFormControlInput1" placeholder="name">
+                        <input type="text" name="module" value={{$obj->module}} class="form-control" id="exampleFormControlInput1" placeholder="module">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="datetime-local" name="produce_date" value={{$obj->produce_date}} placeholder="surename" class="form-control"/>
+                        <input type="datetime-local" name="produce_date" value={{$obj->produce_date}} placeholder="produce_date" class="form-control"/>
                     </div>
                 </div>
 
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="number" name="number" value={{$obj->number}} placeholder="lastname" class="form-control" />
+                        <input type="number" name="number" value={{$obj->number}} placeholder="number" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="colour" value={{$obj->colour}} placeholder="birth" class="form-control" />
+                        <input type="text" name="colour" value={{$obj->colour}} placeholder="colour" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="class" value={{$obj->class}} class="form-control" />
+                        <input type="text" name="class" value={{$obj->class}} class="form-control"  placeholder="class"/>
                     </div>
                 </div>
                 <div class="col-md-6">

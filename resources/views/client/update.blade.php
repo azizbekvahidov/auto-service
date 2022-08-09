@@ -35,11 +35,16 @@
                         <input type="datetime-local" name="birth" value={{$obj->birth}} placeholder="birth" class="form-control" />
                     </div>
                 </div>
-                {{-- <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <input type="file" name="passport" class="form-control" />
+                            <select name="car_id[]" multiple>
+                        @foreach ($car as $i)
+                                <option value="{{$i->id}}">{{$i->module}}</option>
+                        @endforeach
+                            </select>
                     </div>
-                </div> --}}
+                </div>
+
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">Edit</button>
                 </div>

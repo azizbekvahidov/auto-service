@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("delete/{id}" ,[CarController::class,"destroy"])->name("delete");
     });
 
+    Route::group([
+        "prefix" => "admin",
+        "as" => "admin."
+    ], function(){
+    Route::get("",[AdminController::class,"index"])->name('index');
+    });
 });
 
 

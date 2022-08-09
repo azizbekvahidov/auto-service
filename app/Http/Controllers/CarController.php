@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarRequest;
 use App\Models\Car;
+use App\service\CarService;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -12,6 +14,13 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $carservice;
+
+    public function __construct(CarService $validated)
+    {
+        $this->carservice = $validated;
+    }
     public function index()
     {
         $car = Car::all();
@@ -25,6 +34,7 @@ class CarController extends Controller
      */
     public function create()
     {
+        
         return view('car.create');
     }
 
@@ -34,16 +44,9 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarRequest $request)
     {
-        $car = new Car();
-        $car->module = $request->input('module');
-        $car->produce_date = $request->input('produce_date');
-        $car->number = $request->input('number');
-        $car->colour = $request->input('colour');
-        $car->class = $request->input('class');
-
-        $car->save();
+        $this->carservice->create($request->validated());
         return redirect()->route('car.index');
     }
 
@@ -77,16 +80,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarRequest $request, $id)
     {
-        $car = Car::find($id);
-        $car->module = $request->input('module');
-        $car->produce_date = $request->input('produce_date');
-        $car->number = $request->input('number');
-        $car->colour = $request->input('colour');
-        $car->class = $request->input('class');
+        $this->carservice->update($request->validated(),$id);
 
-        $car->save();
         return redirect()->route('car.index');
     }
 
@@ -98,7 +95,7 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        Car::find($id)->delete();
+        $this->carservice->delete($id);
         return redirect()->route('car.index');
     }
 }

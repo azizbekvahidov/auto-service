@@ -35,6 +35,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <input type="number" name="car_id" value={{$obj->client_id}} class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <input type="datetime-local" name="deatline" value="{{$newDate}}" class="form-control" />
                     </div>
                 </div>

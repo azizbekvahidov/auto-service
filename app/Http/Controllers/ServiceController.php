@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequest;
+use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\service\ServiceService as ServiceServiceService;
+
 class ServiceController extends Controller
 {
     /**
@@ -11,6 +15,14 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $ServiceService;
+
+    public function __construct(ServiceServiceService $validated)
+    {
+        $this->ServiceService = $validated;
+    }
+
     public function index()
     {
         $service = Service::all();
@@ -34,16 +46,9 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $service = new Service();
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
-
-        $service->save();
-
+        $this->ServiceService->create($request->validated());
         return redirect()->route('service.index');
     }
 
@@ -77,16 +82,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceRequest $request, $id)
     {
-        $service = Service::find($id);
-        $service->name = $request->input('name');
-        $service->price = $request->input('price');
-        $service->client_id = $request->input('client_id');
-        $service->deatline = $request->input('deatline');
-
-        $service->save();
-
+        $this->ServiceService->update($request->validated(),$id);
         return redirect()->route('service.index');
     }
 
@@ -98,7 +96,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       Service::find($id)->delete();
+       $this->ServiceService->delete($id);
        return redirect()->route('service.index');
     }
 }

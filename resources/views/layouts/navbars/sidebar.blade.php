@@ -106,6 +106,34 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link " href="#resource" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="resource">
+                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('resource') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="resource">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('service.index') }}">
+                                    {{ __('service') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.index') }}">
+                                    {{ __('client') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('car.index') }}">
+                                    {{ __('car') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('icons') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                     </a>

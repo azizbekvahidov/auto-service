@@ -14,7 +14,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Page visits</h3>
+                                <h3 class="mb-0">Client</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="{{route('client.create')}}" class="btn btn-sm btn-primary">Create</a>
@@ -30,7 +30,6 @@
                                     <th scope="col">surename</th>
                                     <th scope="col">lastname</th>
                                     <th scope="col">birth</th>
-                                    {{-- <th scope="col">passport</th> --}}
                                 </tr>
                             </thead>
 
@@ -51,14 +50,10 @@
                                     <td>
                                         {{$i->birth}}
                                     </td>
-                                    {{-- <td>
-                                        {{$i->passport}}
-                                    </td> --}}
                                     <td>
                                         <a href="{{route('client.edit',$i->id)}}" ><i class="fas fa-pen"></i></a>
 
                                         <a href="{{route('client.delete',$i->id)}}"><i class="fas fa-trash"></i></a>
-
                                     </td>
                                 </tr>
 
