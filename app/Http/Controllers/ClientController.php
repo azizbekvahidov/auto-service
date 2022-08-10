@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\ClientRequest;
 use App\Models\Car;
 use App\Models\Client;
+use App\Models\Client_cars;
+use App\service\ClientService;
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\service\ServiceService;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
-class ServiceController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +18,17 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $ServiceService;
+    private $clientservice;
 
-    public function __construct(ServiceService $validated)
+    public function __construct(ClientService $validate)
     {
-        $this->ServiceService = $validated;
+        $this->clientservice = $validate;
     }
 
     public function index()
     {
-        $service = Service::all();
-        return view('service.index', ['obj' => $service]);
+        $client = Client::all();
+        return view('client.index', ['obj' => $client]);
     }
 
     /**
@@ -37,9 +38,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();
-        return view("service.create",["clients" => $clients]);
-
+        $car = Car::all();
+        return view('client.create', ['obj' => $car]);
     }
 
     /**
@@ -48,10 +48,10 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(ClientRequest $request)
     {
-        $this->ServiceService->create($request->validated());
-        return redirect()->route('service.index');
+        $this->clientservice->create($request->validated());
+        return redirect()->route('client.index');
     }
 
     /**
@@ -60,9 +60,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -73,9 +73,9 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        $clients = Client::all();
-        return view('service.update', ['obj' => $service,"clients" => $clients]);
+        $client = Client::find($id);
+        $car = Car::all();
+        return view('client.update', ['obj' => $client,'car'=>$car]);
     }
 
     /**
@@ -85,10 +85,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, $id)
+    public function update(ClientRequest $request, $id)
     {
-        $this->ServiceService->update($request->validated(),$id);
-        return redirect()->route('service.index');
+        $this->clientservice->update($request->validated(),$id);
+        return redirect()->route('client.index');
     }
 
     /**
@@ -99,7 +99,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       $this->ServiceService->delete($id);
-       return redirect()->route('service.index');
+        $this->clientservice->delete($id);
+        return redirect()->route('client.index');
     }
 }

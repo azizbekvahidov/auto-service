@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\CarRequest;
 use App\Models\Car;
-use App\Models\Client;
+use App\service\CarService;
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\service\ServiceService;
 
-class ServiceController extends Controller
+class CarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +15,16 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $ServiceService;
+    private $carservice;
 
-    public function __construct(ServiceService $validated)
+    public function __construct(CarService $validated)
     {
-        $this->ServiceService = $validated;
+        $this->carservice = $validated;
     }
-
     public function index()
     {
-        $service = Service::all();
-        return view('service.index', ['obj' => $service]);
+        $car = Car::all();
+        return view('car.index', ['obj' => $car]);
     }
 
     /**
@@ -37,9 +34,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();
-        return view("service.create",["clients" => $clients]);
-
+        
+        return view('car.create');
     }
 
     /**
@@ -48,10 +44,10 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(CarRequest $request)
     {
-        $this->ServiceService->create($request->validated());
-        return redirect()->route('service.index');
+        $this->carservice->create($request->validated());
+        return redirect()->route('car.index');
     }
 
     /**
@@ -60,9 +56,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -73,9 +69,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        $clients = Client::all();
-        return view('service.update', ['obj' => $service,"clients" => $clients]);
+        $car = Car::find($id);
+        return view('car.update', ['obj' => $car]);
     }
 
     /**
@@ -85,10 +80,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, $id)
+    public function update(CarRequest $request, $id)
     {
-        $this->ServiceService->update($request->validated(),$id);
-        return redirect()->route('service.index');
+        $this->carservice->update($request->validated(),$id);
+
+        return redirect()->route('car.index');
     }
 
     /**
@@ -99,7 +95,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       $this->ServiceService->delete($id);
-       return redirect()->route('service.index');
+        $this->carservice->delete($id);
+        return redirect()->route('car.index');
     }
 }
