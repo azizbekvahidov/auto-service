@@ -50,6 +50,12 @@
                                     <td>
                                         {{$i->birth}}
                                     </td>
+<<<<<<< HEAD
+=======
+                                    <td>
+                                        <img width="40" height="20" src="{{asset(Storage::disk('local')->url($i->passport))}}" alt="">
+                                    </td>
+>>>>>>> 2e0e2f6a1ec79c37f385857a4b702d9790fb24ee
                                     <td>
                                         <a href="{{route('client.edit',$i->id)}}" ><i class="fas fa-pen"></i></a>
 

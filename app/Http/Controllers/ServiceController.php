@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Models\Car;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Service;
-use App\service\ServiceService as ServiceServiceService;
+use App\service\ServiceService;
 
 class ServiceController extends Controller
 {
@@ -18,7 +19,7 @@ class ServiceController extends Controller
 
     private $ServiceService;
 
-    public function __construct(ServiceServiceService $validated)
+    public function __construct(ServiceService $validated)
     {
         $this->ServiceService = $validated;
     }
@@ -36,7 +37,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view("service.create");
+        $clients = Client::all();
+        return view("service.create",["clients" => $clients]);
 
     }
 
@@ -72,7 +74,8 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('service.update', ['obj' => $service]);
+        $clients = Client::all();
+        return view('service.update', ['obj' => $service,"clients" => $clients]);
     }
 
     /**

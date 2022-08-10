@@ -10,7 +10,7 @@
 
     <div class="card" style="width: 50%;">
         <div class="card-body">
-            <form action="{{route('client.store')}}" method="POST">
+            <form action="{{route('client.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @error('car_id')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -47,7 +47,6 @@
                             </select>
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">create</button>
                 </div>
