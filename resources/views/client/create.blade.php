@@ -8,51 +8,45 @@
         </div>
     </div>
 
-    <div class="card" style="width: 50%;">
+    <div class="card">
         <div class="card-body">
+            @include('layouts.message')
             <form action="{{route('client.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @error('car_id')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             @method('PUT')
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="name">
-                    </div>
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="name">
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="surename" placeholder="surename" class="form-control"/>
-                    </div>
+                <div class="form-group">
+                    <input type="text" name="surename" placeholder="surename" class="form-control"/>
                 </div>
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="lastname" placeholder="lastname" class="form-control" />
-                    </div>
+                <div class="form-group">
+                    <input type="text" name="lastname" placeholder="lastname" class="form-control" />
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="datetime-local" name="birth" placeholder="birth" class="form-control" />
-                    </div>
+                <div class="form-group">
+                    <input type="date" name="birth" placeholder="birth" class="form-control" />
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                            <select name="car_id[]" multiple>
-                        @foreach ($obj as $i)
-                                <option value="{{$i->id}}">{{$i->module}}</option>
+                <div class="form-group">
+                    <select name="car_id[]" class="select2 w-100" data-placeholder="Выберите тачку" multiple>
+                        <option value=""></option>
+                        @foreach ($cars as $car)
+                                <option value="{{$car->id}}">{{$car->marka}}</option>
                         @endforeach
-                            </select>
-                    </div>
+                    </select>
                 </div>
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-success">create</button>
-                </div>
+                <button type="submit" class="btn btn-success">create</button>
             </form>
         </div>
     </div>
     @include('layouts.footers.auth')
-
+@endsection
+@section('script')
+<script>
+    $(function() {
+        $('.select2').select2();
+    });
+</script>
 @endsection

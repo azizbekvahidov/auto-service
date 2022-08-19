@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('cars/{id}', [ApiController::class, 'cars']);
+Route::get('services/{id}', [ApiController::class, 'service']);
+Route::get('services', [ApiController::class, 'show_service']);
+
+Route::get('report/{id}', [ApiController::class, 'report']);
+Route::get('bargain_service/{id}', [ApiController::class, 'bargain_service']);
+
+

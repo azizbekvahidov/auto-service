@@ -12,9 +12,7 @@ class Service extends Model
     protected $fillable = [
         "name",
         "price",
-        "client_id",
-        "car_id",
-        "deatline"
+        "deadline"
     ];
 
     public function client(){

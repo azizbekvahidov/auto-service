@@ -8,40 +8,21 @@
         </div>
     </div>
 
-    <div class="card" style="width: 50%;">
+    <div class="card">
         <div class="card-body">
+            @include('layouts.message')
             <form action="{{route('service.store')}}" method="POST">
-            @csrf
-            @method('PUT')
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="name">
-                    </div>
+                @csrf
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="name">
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="number" name="price" placeholder="price" class="form-control"/>
-                    </div>
+                <div class="form-group">
+                    <input type="number" name="price" placeholder="price" class="form-control"/>
                 </div>
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select name="client_id" id="" class="form-control">
-                            @foreach ($clients as $client)
-                                <option value="{{ $client->id }}">{{ $client->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <input type="date" name="deadline" class="form-control" />
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="datetime-local" name="deatline" class="form-control" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-success">create</button>
-                </div>
+                <button type="submit" class="btn btn-success">create</button>
             </form>
         </div>
     </div>

@@ -14,7 +14,7 @@ class Client extends Model
         'lastname',
         'birth'
     ];
-    public function car(){
-        return $this->belongsTo(Car::class);
+    public function cars(){
+        return $this->belongsToMany(Car::class, 'client_cars', 'client_id', 'car_id');
     }
 }

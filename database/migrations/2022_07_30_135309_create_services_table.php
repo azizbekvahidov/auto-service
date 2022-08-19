@@ -17,9 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string("name");
             $table->double("price");
-            $table->string("client_id");
-            // $table->string("car_id");
-            $table->timestamp("deatline");
+            $table->date("deadline");
             $table->timestamps();
         });
     }

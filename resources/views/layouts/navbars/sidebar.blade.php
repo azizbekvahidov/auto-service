@@ -128,6 +128,16 @@
                                     {{ __('car') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('bargain.index') }}">
+                                    {{ __('Bargain') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('report.index') }}">
+                                    {{ __('Report') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

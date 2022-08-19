@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="card" style="width: 50%;">
+    <div class="card">
         <div class="card-body">
             <form action="{{route('client.update',$obj->id)}}" method="POST">
             @csrf
@@ -32,15 +32,17 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="datetime-local" name="birth" value={{$obj->birth}} placeholder="birth" class="form-control" />
+                        <input type="date" name="birth" value={{$obj->birth}} placeholder="birth" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                            <select name="car_id[]" multiple>
-                        @foreach ($car as $i)
-                                <option value="{{$i->id}}">{{$i->module}}</option>
-                        @endforeach
+                            <select name="car_id[]" class="select2 w-100" multiple>
+                                @foreach ($car as $i)
+                                        <option
+                                            {{in_array($i->id, $obj->cars->pluck('id')->toArray()) ? 'selected' : ''}}
+                                            value="{{$i->id}}">{{$i->marka}}</option>
+                                @endforeach
                             </select>
                     </div>
                 </div>
@@ -53,4 +55,11 @@
     </div>
     @include('layouts.footers.auth')
 
+@endsection
+@section('script')
+<script>
+    $(function() {
+        $('.select2').select2();
+    });
+</script>
 @endsection

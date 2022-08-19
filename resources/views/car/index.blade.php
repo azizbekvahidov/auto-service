@@ -26,7 +26,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">module</th>
+                                    <th scope="col">marka</th>
                                     <th scope="col">produce_date</th>
                                     <th scope="col">number</th>
                                     <th scope="col">colour</th>
@@ -37,7 +37,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                        {{$i->module}}
+                                        {{$i->marka}}
                                     </th>
                                     <td>
                                         {{$i->produce_date}}
