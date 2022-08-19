@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class BargainRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => 'required|string',
-            "surename" => 'required|string',
-            "lastname" => 'required|string',
-            "birth" => 'required|date',
-            "car_id" => 'required|array',
-            'car_id.*' => 'required|integer|exists:cars,id'
+            'cleint_id' => 'required|exists:clients,id',
+            'car_id' => 'required|exists:cars,id',
+            'total_price' => 'required|',
+            'services_id' => 'required|exists:services,id',
+            'price' => 'required|strin',
         ];
     }
 }

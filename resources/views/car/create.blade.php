@@ -10,24 +10,22 @@
 
     <div class="card" style="width: 50%;">
         <div class="card-body">
+            @include('layouts.message')
             <form action="{{route('car.store')}}" method="POST">
             @csrf
-            @method('PUT')
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="module" class="form-control" id="exampleFormControlInput1" placeholder="module">
+                        <input type="text" name="marka" class="form-control" id="marka" placeholder="marka">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="datetime-local" name="produce_date" placeholder="produce_date" class="form-control"/>
+                        <input type="date" name="produce_date" placeholder="produce_date" class="form-control"/>
                     </div>
                 </div>
-
-
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="number" name="number" placeholder="number" class="form-control" />
+                        <input type="text" name="number" placeholder="number" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">

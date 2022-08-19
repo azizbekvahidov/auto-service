@@ -6,7 +6,8 @@ use App\Http\Requests\ClientRequest;
 use App\Models\Car;
 use App\Models\Client;
 use App\Models\Client_cars;
-use App\service\ClientService;
+use App\service\clientService;
+use App\service\ServiceService;
 use Illuminate\Http\Request;
 use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
@@ -18,18 +19,20 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $clientservice;
+    private $clientService;
 
-    public function __construct(ClientService $validate)
+    public function __construct(clientService $validate)
     {
-        $this->clientservice = $validate;
+        $this->clientService = $validate;
     }
 
     public function index()
     {
-        $client = Client::all();
-        return view('client.index', ['obj' => $client]);
+        return view('client.index', [
+            'clients' => $this->clientService->getAll()
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,8 +41,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $car = Car::all();
-        return view('client.create', ['obj' => $car]);
+        $cars = Car::all();
+        return view('client.create', ['cars' => $cars]);
     }
 
     /**
@@ -50,19 +53,23 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request)
     {
-        $this->clientservice->create($request->validated());
+        $this->clientService->create($request->validated());
         return redirect()->route('client.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Client $client
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        //
+        $services = (new ServiceService)->getAll();
+        return view('client.show', [
+            'client' => $client,
+            'services' => $services
+        ]);
     }
 
     /**
@@ -87,7 +94,7 @@ class ClientController extends Controller
      */
     public function update(ClientRequest $request, $id)
     {
-        $this->clientservice->update($request->validated(),$id);
+        $this->clientService->update($request->validated(),$id);
         return redirect()->route('client.index');
     }
 
@@ -99,7 +106,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $this->clientservice->delete($id);
+        $this->clientService->delete($id);
         return redirect()->route('client.index');
     }
 }

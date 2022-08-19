@@ -6,15 +6,22 @@ use App\Models\Service;
 
 class ServiceService{
 
+    public function getAll() {
+        return Service::all();
+    }
+
     public function create($validated){
         return Service::create($validated);
     }
-    public function update($validated,$id){
-        $service = Service::find($id);
-        return $service->update($validated);
+
+    public function update($validated, Service $service){
+        $service->update($validated);
+        $service->fresh();
+
+        return $service;
     }
-    public function delete($id){
-        $service = Service::find($id);
+
+    public function delete(Service $service){
         return $service->delete();
     }
 }

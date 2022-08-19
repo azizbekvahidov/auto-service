@@ -3,24 +3,24 @@
 namespace App\service;
 
 use App\Models\Client;
-use App\Models\Client_cars;
-use App\Models\ClientCars;
 
 class ClientService{
 
+    public function getAll() {
+        return Client::all();
+    }
+
     public function create($validate){
         $client = Client::create($validate);
-        foreach($validate["car_id"] as $id){
-            $clientCar = new ClientCars();
-            $clientCar->client_id = $client->id;
-            $clientCar->car_id = $id;
-            $clientCar->save();
-        }
+        $client->cars()->sync($validate['car_id']);
         return $client;
     }
     public function update($validate,$id){
         $client = Client::find($id);
-        return $client->update($validate);
+        $client->update($validate);
+        $client->fresh();
+        $client->cars()->sync($validate['car_id']);
+        return $client;
     }
     public function delete($id){
         $client = Client::find($id);

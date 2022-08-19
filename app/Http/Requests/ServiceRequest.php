@@ -24,10 +24,9 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|string",
+            "name" => "required|string|max:100",
             "price" => "required|numeric",
-            "client_id" => "required|exists:clients,id",
-            "deatline" => "required|date",
+            "deadline" => "required|date",
         ];
     }
 }

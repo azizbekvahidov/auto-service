@@ -26,40 +26,37 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope="col">№</th>
                                     <th scope="col">name</th>
                                     <th scope="col">surename</th>
                                     <th scope="col">lastname</th>
                                     <th scope="col">birth</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
-                        @foreach ($obj as $i)
-
-
+                        @foreach ($clients as $client)
                             <tbody>
                                 <tr>
+                                    <td>{{$client->id}}</td>
                                     <th scope="row">
-                                        {{$i->name}}
+                                        <a href="{{route('client.show', $client->id)}}">
+                                            {{$client->name}}
+                                        </a>
                                     </th>
                                     <td>
-                                        {{$i->surename}}
+                                        {{$client->surename}}
                                     </td>
                                     <td>
-                                        {{$i->lastname}}
+                                        {{$client->lastname}}
                                     </td>
                                     <td>
-                                        {{$i->birth}}
+                                        {{$client->birth}}
                                     </td>
-<<<<<<< HEAD
-=======
                                     <td>
-                                        <img width="40" height="20" src="{{asset(Storage::disk('local')->url($i->passport))}}" alt="">
-                                    </td>
->>>>>>> 2e0e2f6a1ec79c37f385857a4b702d9790fb24ee
-                                    <td>
-                                        <a href="{{route('client.edit',$i->id)}}" ><i class="fas fa-pen"></i></a>
+                                        <a href="{{route('client.edit',$client->id)}}" ><i class="fas fa-pen"></i></a>
 
-                                        <a href="{{route('client.delete',$i->id)}}"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('client.delete',$client->id)}}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
 

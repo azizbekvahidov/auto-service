@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
-use App\Models\Car;
 use App\Models\Client;
+use App\service\BargainsService;
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\service\ServiceService;
 
-class ServiceController extends Controller
+class BargainController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    private $bargain;
 
-    private $serviceService;
-
-    public function __construct(ServiceService $validated)
+    public function __construct(BargainsService $validate)
     {
-        $this->serviceService = $validated;
+        $this->bargain = $validate;
     }
+
 
     public function index()
     {
-        return view('service.index', ['services' => $this->serviceService->getAll()]);
+        return view('bargain.index',[
+            "clients"=> Client::all()
+        ]);
     }
 
     /**
@@ -36,9 +35,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();
-        return view("service.create",["clients" => $clients]);
-
+        //
     }
 
     /**
@@ -47,10 +44,11 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(Request $request)
     {
-        $this->serviceService->create($request->validated());
-        return redirect()->route('service.index');
+
+        $this->bargain->save($request);
+        return redirect()->route('bargain.index');
     }
 
     /**
@@ -59,20 +57,20 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        return view('service.update', ['service' => $service]);
+        //
     }
 
     /**
@@ -82,10 +80,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(Request $request, $id)
     {
-        $this->serviceService->update($request->validated(), $service);
-        return redirect()->route('service.index');
+        //
     }
 
     /**
@@ -94,9 +91,8 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-       $this->serviceService->delete($service);
-       return redirect()->route('service.index');
+        //
     }
 }

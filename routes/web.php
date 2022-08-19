@@ -4,6 +4,8 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BargainController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,10 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     ], function(){
     Route::get("",[ServiceController::class,"index"])->name('index');
 	Route::get("create",[ServiceController::class,"create"])->name("create");
-	Route::put("store",[ServiceController::class,"store"])->name("store");
-	Route::get("edit/{id}" ,[ServiceController::class,"edit"])->name("edit");
-	Route::put("update/{id}" ,[ServiceController::class,"update"])->name("update");
-	Route::get("delete/{id}" ,[ServiceController::class,"destroy"])->name("delete");
+	Route::post("store",[ServiceController::class,"store"])->name("store");
+	Route::get("edit/{service}" ,[ServiceController::class,"edit"])->name("edit");
+	Route::put("update/{service}" ,[ServiceController::class,"update"])->name("update");
+	Route::delete("delete/{service}" ,[ServiceController::class,"destroy"])->name("delete");
     });
 
 	Route::group([
@@ -52,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         "as" => "client."
     ], function(){
     Route::get("",[ClientController::class,"index"])->name('index');
+    Route::get("show/{client}",[ClientController::class,"show"])->name('show');
     Route::get("create",[ClientController::class,"create"])->name('create');
     Route::put("store",[ClientController::class,"store"])->name('store');
     Route::get("edit/{id}",[ClientController::class,"edit"])->name('edit');
@@ -65,20 +68,28 @@ Route::group(['middleware' => 'auth'], function () {
     ], function(){
     Route::get("",[CarController::class,"index"])->name('index');
     Route::get("create",[CarController::class,"create"])->name('create');
-    Route::put("store",[CarController::class,"store"])->name('store');
+    Route::post("store",[CarController::class,"store"])->name('store');
     Route::get("edit/{id}",[CarController::class,"edit"])->name('edit');
     Route::put("update/{id}" ,[CarController::class,"update"])->name("update");
     Route::get("delete/{id}" ,[CarController::class,"destroy"])->name("delete");
     });
 
     Route::group([
-        "prefix" => "admin",
-        "as" => "admin."
-    ], function(){
-    Route::get("",[AdminController::class,"index"])->name('index');
+        'as' => 'bargain.',
+        'prefix' => 'bargain'
+    ], function() {
+        Route::get('', [BargainController::class, 'index'])->name('index');
+        Route::post('store', [BargainController::class, 'store'])->name('store');
+    });
+    Route::group([
+        'as' => 'report.',
+        'prefix' => 'report'
+    ], function() {
+        Route::get('', [ReportController::class, 'index'])->name('index');
     });
 });
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 

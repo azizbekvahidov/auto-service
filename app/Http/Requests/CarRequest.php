@@ -24,7 +24,7 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
-            'module' => 'required|string',
+            'marka' => 'required|string',
             'produce_date' => 'required|date',
             'number' => 'required|integer',
             'colour' => 'required|string',

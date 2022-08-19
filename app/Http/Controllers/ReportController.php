@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $client = Client::all();
-        return view("admin.index",['client'=>$client]);
+        return view('report.index');
     }
 
     /**

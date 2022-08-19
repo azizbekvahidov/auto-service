@@ -28,36 +28,30 @@
                                 <tr>
                                     <th scope="col">name</th>
                                     <th scope="col">price</th>
-                                    <th scope="col">client_id</th>
-                                    <th scope="col">car_id</th>
-                                    <th scope="col">deatline</th>
-
+                                    <th scope="col">deadline</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
-                            @foreach($obj as $i)
+                            @foreach($services as $service)
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                        {{$i->name}}
+                                        {{$service->name}}
                                     </th>
                                     <td>
-                                        {{$i->price}}
+                                        {{$service->price}}
                                     </td>
                                     <td>
-                                        {{$i->client->name}}
+                                        {{$service->deadline}}
                                     </td>
                                     <td>
-                                        {{-- {{$i->car->module}} --}}
-                                    </td>
-                                    <td>
-                                        {{$i->deatline}}
-                                    </td>
-                                    <td>
-                                        <a href="{{route('service.edit', $i->id)}}" ><i class="fas fa-pen"></i></a>
-
-                                        <a href="{{route('service.delete', $i->id)}}"><i class="fas fa-trash"></i></a>
-
+                                        <a href="{{route('service.edit', $service->id)}}" ><i class="fas fa-pen"></i></a>
+                                        <a href="#" onclick="document.querySelector('#service_delete-{{$service->id}}').submit()"><i class="fas fa-trash"></i></a>
+                                        <form action="{{route('service.delete', $service->id)}}" id="service_delete-{{$service->id}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
 
